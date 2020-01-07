@@ -48,22 +48,22 @@
 
   <meta name="description" content="关于微信小程序，不可避免会与各种二维码有接触。 小程序开发文档中也有相应的api文档，用起来还是很方便的。 这一次，刚好因为版本需求，于是进一步了解了一番，在此来一个总结，主要为前端角度。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="V1.2.7小结之二维码与小程序">
-<meta property="og:url" content="http://sweetypeng.github.io/2018/11/26/V1.2.7%E5%B0%8F%E7%BB%93%E4%B9%8B%E4%BA%8C%E7%BB%B4%E7%A0%81%E4%B8%8E%E5%B0%8F%E7%A8%8B%E5%BA%8F/index.html">
+<meta property="og:title" content="微信小程序开发记录之四-二维码">
+<meta property="og:url" content="http://sweetypeng.github.io/2018/11/26/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%9B%9B-%E4%BA%8C%E7%BB%B4%E7%A0%81/index.html">
 <meta property="og:site_name" content="SweetyPeng&#39;s Blog">
 <meta property="og:description" content="关于微信小程序，不可避免会与各种二维码有接触。 小程序开发文档中也有相应的api文档，用起来还是很方便的。 这一次，刚好因为版本需求，于是进一步了解了一番，在此来一个总结，主要为前端角度。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://sweetypeng.github.io/2018/11/26/V1.2.7%E5%B0%8F%E7%BB%93%E4%B9%8B%E4%BA%8C%E7%BB%B4%E7%A0%81%E4%B8%8E%E5%B0%8F%E7%A8%8B%E5%BA%8F/scanCode.png">
-<meta property="og:image" content="http://sweetypeng.github.io/2018/11/26/V1.2.7%E5%B0%8F%E7%BB%93%E4%B9%8B%E4%BA%8C%E7%BB%B4%E7%A0%81%E4%B8%8E%E5%B0%8F%E7%A8%8B%E5%BA%8F/success.png">
+<meta property="og:image" content="http://sweetypeng.github.io/2018/11/26/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%9B%9B-%E4%BA%8C%E7%BB%B4%E7%A0%81/scanCode.png">
+<meta property="og:image" content="http://sweetypeng.github.io/2018/11/26/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%9B%9B-%E4%BA%8C%E7%BB%B4%E7%A0%81/success.png">
 <meta property="article:published_time" content="2018-11-26T05:20:20.000Z">
-<meta property="article:modified_time" content="2020-01-06T14:46:01.037Z">
+<meta property="article:modified_time" content="2020-01-07T12:25:05.815Z">
 <meta property="article:author" content="Sweety Peng">
-<meta property="article:tag" content="keep learning">
 <meta property="article:tag" content="Summary">
+<meta property="article:tag" content="keep learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://sweetypeng.github.io/2018/11/26/V1.2.7%E5%B0%8F%E7%BB%93%E4%B9%8B%E4%BA%8C%E7%BB%B4%E7%A0%81%E4%B8%8E%E5%B0%8F%E7%A8%8B%E5%BA%8F/scanCode.png">
+<meta name="twitter:image" content="http://sweetypeng.github.io/2018/11/26/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%9B%9B-%E4%BA%8C%E7%BB%B4%E7%A0%81/scanCode.png">
 
-<link rel="canonical" href="http://sweetypeng.github.io/2018/11/26/V1.2.7%E5%B0%8F%E7%BB%93%E4%B9%8B%E4%BA%8C%E7%BB%B4%E7%A0%81%E4%B8%8E%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+<link rel="canonical" href="http://sweetypeng.github.io/2018/11/26/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%9B%9B-%E4%BA%8C%E7%BB%B4%E7%A0%81/">
 
 
 <script id="page-configurations">
@@ -75,7 +75,7 @@
   };
 </script>
 
-  <title>V1.2.7小结之二维码与小程序 | SweetyPeng's Blog</title>
+  <title>微信小程序开发记录之四-二维码 | SweetyPeng's Blog</title>
   
 
 
@@ -189,7 +189,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://sweetypeng.github.io/2018/11/26/V1.2.7%E5%B0%8F%E7%BB%93%E4%B9%8B%E4%BA%8C%E7%BB%B4%E7%A0%81%E4%B8%8E%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+    <link itemprop="mainEntityOfPage" href="http://sweetypeng.github.io/2018/11/26/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%9B%9B-%E4%BA%8C%E7%BB%B4%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -202,7 +202,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          V1.2.7小结之二维码与小程序
+          微信小程序开发记录之四-二维码
         </h1>
 
         <div class="post-meta">
@@ -219,7 +219,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-01-06 22:46:01" itemprop="dateModified" datetime="2020-01-06T22:46:01+08:00">2020-01-06</time>
+                <time title="Modified: 2020-01-07 20:25:05" itemprop="dateModified" datetime="2020-01-07T20:25:05+08:00">2020-01-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,16 +248,16 @@
 <p>小程序开发文档中也有相应的api文档，用起来还是很方便的。</p>
 <p>这一次，刚好因为版本需求，于是进一步了解了一番，在此来一个总结，主要为前端角度。</p>
 <a id="more"></a>
-<h3 id="1、调起客户端扫码界面进行扫码"><a href="#1、调起客户端扫码界面进行扫码" class="headerlink" title="1、调起客户端扫码界面进行扫码"></a>1、调起客户端扫码界面进行扫码</h3><p><strong>==<a href="https://developers.weixin.qq.com/miniprogram/dev/api/device/scan/wx.scanCode.html" target="_blank" rel="noopener">wx.scanCode(Object object)</a>==</strong></p>
+<h3 id="🐎微信小程序"><a href="#🐎微信小程序" class="headerlink" title="🐎微信小程序"></a>🐎微信小程序</h3><h4 id="1、调起客户端扫码界面进行扫码"><a href="#1、调起客户端扫码界面进行扫码" class="headerlink" title="1、调起客户端扫码界面进行扫码"></a>1、调起客户端扫码界面进行扫码</h4><p><strong>==<a href="https://developers.weixin.qq.com/miniprogram/dev/api/device/scan/wx.scanCode.html" target="_blank" rel="noopener">wx.scanCode(Object object)</a>==</strong></p>
 <p><img src="scanCode.png" alt="scanCode"></p>
 <p>scanType 的值可以有：’barCode’, ‘qrCode’, ‘datamatrix’，’pdf417’</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">async scan() &#123;</span><br><span class="line">      const resp &#x3D; await wepy.scanCode(&#123;</span><br><span class="line">        scanType: [&#39;barCode&#39;, &#39;qrCode&#39;, &#39;datamatrix&#39;]</span><br><span class="line">      &#125;);</span><br><span class="line">      if (!&#x2F;^\d&#123;6,20&#125;$&#x2F;gi.test(resp.result)) &#123;</span><br><span class="line">        this.$toast(&#39;请扫描正确的条形码！&#39;);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        this.bloodCode &#x3D; resp.result;</span><br><span class="line">        this.$apply();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">async scan() &#123;</span><br><span class="line">      const resp = await wepy.scanCode(&#123;</span><br><span class="line">        scanType: ['barCode', 'qrCode', 'datamatrix']</span><br><span class="line">      &#125;);</span><br><span class="line">      if (!/^\d&#123;6,20&#125;$/gi.test(resp.result)) &#123;</span><br><span class="line">        this.$toast('请扫描正确的条形码！');</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        this.bloodCode = resp.result;</span><br><span class="line">        this.$apply();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p><strong>==success 的回调函数==</strong></p>
 <p><img src="success.png" alt="success"></p>
 <p>利用这个回调函数，可以获取二维码中携带的参数，这个在之后有很大的用处。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wx.scanCode(&#123;</span><br><span class="line">  success (res) &#123;</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wx.scanCode(&#123;</span><br><span class="line">  success (res) &#123;</span><br><span class="line">    console.log(res)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>一开始运用还不熟悉，就把所有参数打印出来，一个个进行熟悉。</p>
-<h3 id="2、扫码进入小程序获取二维码携带参数"><a href="#2、扫码进入小程序获取二维码携带参数" class="headerlink" title="2、扫码进入小程序获取二维码携带参数"></a>2、扫码进入小程序获取二维码携带参数</h3><p>获取二维码携带的参数，需要根据不同的应用场合，来进行不同的处理方法。（似乎说的有点绕=_=）</p>
+<h4 id="2、扫码进入小程序获取二维码携带参数"><a href="#2、扫码进入小程序获取二维码携带参数" class="headerlink" title="2、扫码进入小程序获取二维码携带参数"></a>2、扫码进入小程序获取二维码携带参数</h4><p>获取二维码携带的参数，需要根据不同的应用场合，来进行不同的处理方法。（似乎说的有点绕=_=）</p>
 <p>例如一个需求是：根据二维码携带的centerId进入不同的项目。<br>这里的参数只有一个，而且属于固定参数，变动不大。<br>就可以直接通过onload()获取参数。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onLoad(options) &#123;</span><br><span class="line">    this.centerId &#x3D; options.centerId;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
 <p>例如，另一种的应用场景是：在注册时，扫二维码进来注册，根据二维码携带的from、deptId、userType、orderId等，进行不同的判断处理。<br>这些二维码相当于是定制的二维码，判断也较多。因此采用了另一种处理方法。</p>
@@ -267,14 +267,15 @@
 <p>后者getQrcodeQueryString方法，进行对编码的解析，获取对应的name。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">export const getQrcodeQueryString &#x3D; (options, name) &#x3D;&gt; &#123;</span><br><span class="line">  if (options.q !&#x3D;&#x3D; undefined) &#123;</span><br><span class="line">    return getUrlQueryString(decodeURIComponent(options.q), name);</span><br><span class="line">  &#125;</span><br><span class="line">  return null;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p><strong>==Tips:==</strong><br><br>微信识别二维码后进入小程序，会将二维码链接当成参数”q”的形式传入小程序，在onLoad事件中提取“q”参数并自行UrlDecode一次，获取原二维码的完整内容。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 通过“onload”的“options”参数对象获取页面传入的参数</span><br><span class="line">onLoad: function (options)&#123;</span><br><span class="line">    console.log(decodeURIComponent(options.q));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="编码和解码URI的方法"><a href="#编码和解码URI的方法" class="headerlink" title="编码和解码URI的方法"></a>编码和解码URI的方法</h4><p>此处推荐一个看过的帖子：<a href="https://www.cnblogs.com/shuiyi/p/5277233.html" target="_blank" rel="noopener">一张图看懂encodeURI、encodeURIComponent、decodeURI、decodeURIComponent的区别</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 通过“onload”的“options”参数对象获取页面传入的参数</span><br><span class="line">onLoad: function (options)&#123;</span><br><span class="line">    console.log(decodeURIComponent(options.q));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3、二维码与后端"><a href="#3、二维码与后端" class="headerlink" title="3、二维码与后端"></a>3、二维码与后端</h4><p><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/qr-code.html" target="_blank" rel="noopener">获取二维码</a><br>这里参考官方文档。<br>对应三种API（<a href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/qr-code/createWXAQRCode.html" target="_blank" rel="noopener">createWXAQRCode</a>、<a href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/qr-code/getWXACode.html" target="_blank" rel="noopener">getWXACode</a>、<a href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/qr-code/getWXACodeUnlimit.html" target="_blank" rel="noopener">getWXACodeUnlimit</a>）</p>
+<p>这里还要安利一个工具 草料二维码 ，可以制作二维码，也可以解析二维码，以及更多用途。</p>
+<h3 id="🐑JS"><a href="#🐑JS" class="headerlink" title="🐑JS"></a>🐑JS</h3><h4 id="编码和解码URI的方法"><a href="#编码和解码URI的方法" class="headerlink" title="编码和解码URI的方法"></a>编码和解码URI的方法</h4><p>此处推荐一个看过的帖子：<a href="https://www.cnblogs.com/shuiyi/p/5277233.html" target="_blank" rel="noopener">一张图看懂encodeURI、encodeURIComponent、decodeURI、decodeURIComponent的区别</a></p>
 <p>编码：encodeURI()、encodeURIComponent()、</p>
 <p>解码：decodeURI()、decodeURIComponent()</p>
-<p><strong>比较：</strong><br><br>encodeURI 和 decodeURI 函数操作的是完整的 URI；<br>这俩函数假定 URI 中的任何保留字符都有特殊意义，所有不会编码它们。<br><br><br>encodeURIComponent 和 decodeURIComponent 函数操作的是组成 URI 的个别组件；<br>这俩函数假定任何保留字符都代表普通文本，所以必须编码它们，所以它们（保留字符）出现在一个完整 URI 的组件里面时不会被解释成保留字符了。</p>
+<p><strong>比较：</strong><br>encodeURI 和 decodeURI 函数操作的是完整的 URI；<br>这俩函数假定 URI 中的任何保留字符都有特殊意义，所有不会编码它们。</p>
+<p>encodeURIComponent 和 decodeURIComponent 函数操作的是组成 URI 的个别组件；<br>这俩函数假定任何保留字符都代表普通文本，所以必须编码它们，所以它们（保留字符）出现在一个完整 URI 的组件里面时不会被解释成保留字符了。</p>
 <p><strong>encodeURIComponent() 函数</strong><br><br>可把字符串作为 URI 组件进行编码。该方法不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码： - _ . ! ~ * ‘ ( ) 。<br><br>其他字符（比如 ：;/?:@&amp;=+$,# 这些用于分隔 URI 组件的标点符号），都是由一个或多个十六进制的转义序列替换的。</p>
-<h3 id="二维码与后端"><a href="#二维码与后端" class="headerlink" title="二维码与后端"></a>二维码与后端</h3><h4 id="获取二维码"><a href="#获取二维码" class="headerlink" title="获取二维码"></a><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/qr-code.html" target="_blank" rel="noopener">获取二维码</a></h4><p>这里参考官方文档。<br>对应三种API（<a href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/qr-code/createWXAQRCode.html" target="_blank" rel="noopener">createWXAQRCode</a>、<a href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/qr-code/getWXACode.html" target="_blank" rel="noopener">getWXACode</a>、<a href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/qr-code/getWXACodeUnlimit.html" target="_blank" rel="noopener">getWXACodeUnlimit</a>）</p>
-<p>这里还要安利一个工具 草料二维码 ，可以制作二维码，也可以解析二维码，以及更多用途。</p>
 <h3 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h3><ul>
 <li>每一次优化，必须先理清原有的逻辑，小程序参数多，所以要保证前后参数不丢。</li>
 <li>增强自信，不要轻易就动摇了自己的想法。</li>
@@ -290,8 +291,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/keep-learning/" rel="tag"># keep learning</a>
               <a href="/tags/Summary/" rel="tag"># Summary</a>
+              <a href="/tags/keep-learning/" rel="tag"># keep learning</a>
           </div>
 
         
@@ -300,12 +301,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2018/11/12/V1.2.6%E8%AE%B0%E5%BD%95/" rel="prev" title="V1.2.6记录">
-      <i class="fa fa-chevron-left"></i> V1.2.6记录
+    <a href="/2018/11/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95%E4%B9%8B%E4%B8%89/" rel="prev" title="微信小程序开发记录之三">
+      <i class="fa fa-chevron-left"></i> 微信小程序开发记录之三
     </a></div>
       <div class="post-nav-item">
-    <a href="/2018/12/12/V1.2.8%E5%B0%8F%E7%BB%93%E4%B9%8B%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="next" title="V1.2.8小结之正则表达式">
-      V1.2.8小结之正则表达式 <i class="fa fa-chevron-right"></i>
+    <a href="/2018/12/12/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="next" title="正则表达式">
+      正则表达式 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -366,7 +367,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、调起客户端扫码界面进行扫码"><span class="nav-number">1.</span> <span class="nav-text">1、调起客户端扫码界面进行扫码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、扫码进入小程序获取二维码携带参数"><span class="nav-number">2.</span> <span class="nav-text">2、扫码进入小程序获取二维码携带参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#编码和解码URI的方法"><span class="nav-number">2.1.</span> <span class="nav-text">编码和解码URI的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维码与后端"><span class="nav-number">3.</span> <span class="nav-text">二维码与后端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取二维码"><span class="nav-number">3.1.</span> <span class="nav-text">获取二维码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#心得"><span class="nav-number">4.</span> <span class="nav-text">心得</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#因为热爱，那就保持这份热情！加油"><span class="nav-number">4.1.</span> <span class="nav-text">因为热爱，那就保持这份热情！加油~</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#🐎微信小程序"><span class="nav-number">1.</span> <span class="nav-text">🐎微信小程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、调起客户端扫码界面进行扫码"><span class="nav-number">1.1.</span> <span class="nav-text">1、调起客户端扫码界面进行扫码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、扫码进入小程序获取二维码携带参数"><span class="nav-number">1.2.</span> <span class="nav-text">2、扫码进入小程序获取二维码携带参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、二维码与后端"><span class="nav-number">1.3.</span> <span class="nav-text">3、二维码与后端</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#🐑JS"><span class="nav-number">2.</span> <span class="nav-text">🐑JS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#编码和解码URI的方法"><span class="nav-number">2.1.</span> <span class="nav-text">编码和解码URI的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#心得"><span class="nav-number">3.</span> <span class="nav-text">心得</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#因为热爱，那就保持这份热情！加油"><span class="nav-number">3.1.</span> <span class="nav-text">因为热爱，那就保持这份热情！加油~</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -380,18 +381,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

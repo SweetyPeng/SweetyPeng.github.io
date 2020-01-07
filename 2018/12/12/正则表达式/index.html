@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://sweetypeng.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="🏀正则表达式 主要功能：模式匹配，文本检索与替换 表示：   可以用RegExp对象表示，用RegExp()构造函数来创建RegExp对象 正则表达式直接量：&#x2F;…&#x2F;之间的字符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式">
+<meta property="og:url" content="http://sweetypeng.github.io/2018/12/12/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
+<meta property="og:site_name" content="SweetyPeng&#39;s Blog">
+<meta property="og:description" content="🏀正则表达式 主要功能：模式匹配，文本检索与替换 表示：   可以用RegExp对象表示，用RegExp()构造函数来创建RegExp对象 正则表达式直接量：&#x2F;…&#x2F;之间的字符">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-12-12T03:20:38.000Z">
+<meta property="article:modified_time" content="2020-01-07T12:28:37.784Z">
+<meta property="article:author" content="Sweety Peng">
+<meta property="article:tag" content="Summary">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://sweetypeng.github.io/2018/12/12/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>正则表达式 | SweetyPeng's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SweetyPeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://sweetypeng.github.io/2018/12/12/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sweety Peng">
+      <meta itemprop="description" content="keep learning, keep fresh!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SweetyPeng's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          正则表达式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-12-12 11:20:38" itemprop="dateCreated datePublished" datetime="2018-12-12T11:20:38+08:00">2018-12-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-01-07 20:28:37" itemprop="dateModified" datetime="2020-01-07T20:28:37+08:00">2020-01-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">正则表达式</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="🏀正则表达式"><a href="#🏀正则表达式" class="headerlink" title="🏀正则表达式"></a>🏀正则表达式</h3><ul>
+<li>主要功能：模式匹配，文本检索与替换</li>
+<li>表示：</li>
+</ul>
+<ol>
+<li>可以用RegExp对象表示，用RegExp()构造函数来创建RegExp对象</li>
+<li>正则表达式直接量：/…/之间的字符<a id="more"></a></li>
+</ol>
+<ul>
+<li>组成</li>
+</ul>
+<ol>
+<li>普通字符： 字母[a-zA-Z]、数字[0-9]、下划线[-]、汉字，标点符号</li>
+<li>元字符（特殊字符）：<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><blockquote>
+<p>注意：<br>在字符集合中[ ],^ 表示匹配未包含的任意字符<br>在正则表达式中/ /，^表示定位符，匹配输入字符串开始的位置</p>
+</blockquote>
+<h5 id="常用的标准字符说明"><a href="#常用的标准字符说明" class="headerlink" title="常用的标准字符说明"></a>常用的标准字符说明</h5></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>标准字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\d</td>
+<td>匹配0-9中的任意一个数字，等效于[0-9]</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>匹配非数字字符，等效于[^0-9]</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配任意一个字母、数字或下划线，等效于[A-Za-z0-9_]</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>与任何非字母、数字或下划线字符匹配，等效于[^A-Za-z0-9_]</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任何非空白字符，等效于[^\f\n\r\t\v]</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>匹配换行符</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>匹配一个回车符</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>匹配制表符</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>匹配换页符</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>匹配垂直制表符</td>
+</tr>
+</tbody></table>
+<h5 id="常用的特殊字符说明"><a href="#常用的特殊字符说明" class="headerlink" title="常用的特殊字符说明"></a>常用的特殊字符说明</h5><table>
+<thead>
+<tr>
+<th>特殊字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\</td>
+<td>转义字符，将下一个字符标记为一个特殊字符</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配字符串开始的位置</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串结尾的位置</td>
+</tr>
+<tr>
+<td>*</td>
+<td>零次或多次匹配前面的字符或子表达式</td>
+</tr>
+<tr>
+<td>+</td>
+<td>一次或多次匹配前面的字符或子表达式</td>
+</tr>
+<tr>
+<td>?</td>
+<td>零次或一次匹配前面的字符或子表达式</td>
+</tr>
+<tr>
+<td>.</td>
+<td>“点” 匹配除“\r\n”之外的任何单个字符</td>
+</tr>
+<tr>
+<td>|</td>
+<td>或</td>
+</tr>
+<tr>
+<td>[ ]</td>
+<td>字符集合</td>
+</tr>
+<tr>
+<td>( )</td>
+<td>分组，要匹配圆括号字符，请使用 “(” ?或 “)”</td>
+</tr>
+</tbody></table>
+<h5 id="常用的限定字符说明"><a href="#常用的限定字符说明" class="headerlink" title="常用的限定字符说明"></a>常用的限定字符说明</h5><table>
+<thead>
+<tr>
+<th>限定字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>零次或多次匹配前面的字符或子表达式</td>
+</tr>
+<tr>
+<td>+</td>
+<td>一次或多次匹配前面的字符或子表达式</td>
+</tr>
+<tr>
+<td>?</td>
+<td>零次或一次匹配前面的字符或子表达式</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>n是一个非负整数，匹配确定的n次</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>n是非负整数，至少匹配n次</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>n和m是非负整数，其中n&lt;=m；匹配至少n次，至多m次</td>
+</tr>
+</tbody></table>
+<h5 id="常用的定位字符说明"><a href="#常用的定位字符说明" class="headerlink" title="常用的定位字符说明"></a>常用的定位字符说明</h5><table>
+<thead>
+<tr>
+<th>定位字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>^</td>
+<td>匹配字符串开始的位置，表示开始</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串结尾的位置，表示结尾</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配一个单词边界</td>
+</tr>
+</tbody></table>
+<h5 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h5><p>1、在表单中 存在电子邮箱的校验：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/g;</span><br><span class="line">if (!emailReg.test(email)) &#123;</span><br><span class="line">  this.showToast('请输入正确的邮箱地址！');</span><br><span class="line">  return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、身份证合法校验</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">// 身份证合法校验</span><br><span class="line">export const identityCodeValid = (code, sex = '') =&gt; &#123;</span><br><span class="line">  let ycode = code;</span><br><span class="line">  let pass = true;</span><br><span class="line">  let result = &#123;</span><br><span class="line">    tip: '',</span><br><span class="line">    code: '11'</span><br><span class="line">  &#125;;</span><br><span class="line">  const city = &#123;</span><br><span class="line">    11: '北京',</span><br><span class="line">    12: '天津',</span><br><span class="line">    13: '河北',</span><br><span class="line">    14: '山西',</span><br><span class="line">    15: '内蒙古',</span><br><span class="line">    21: '辽宁',</span><br><span class="line">    22: '吉林',</span><br><span class="line">    23: '黑龙江 ',</span><br><span class="line">    31: '上海',</span><br><span class="line">    32: '江苏',</span><br><span class="line">    33: '浙江',</span><br><span class="line">    34: '安徽',</span><br><span class="line">    35: '福建',</span><br><span class="line">    36: '江西',</span><br><span class="line">    37: '山东',</span><br><span class="line">    41: '河南',</span><br><span class="line">    42: '湖北 ',</span><br><span class="line">    43: '湖南',</span><br><span class="line">    44: '广东',</span><br><span class="line">    45: '广西',</span><br><span class="line">    46: '海南',</span><br><span class="line">    50: '重庆',</span><br><span class="line">    51: '四川',</span><br><span class="line">    52: '贵州',</span><br><span class="line">    53: '云南',</span><br><span class="line">    54: '西藏 ',</span><br><span class="line">    61: '陕西',</span><br><span class="line">    62: '甘肃',</span><br><span class="line">    63: '青海',</span><br><span class="line">    64: '宁夏',</span><br><span class="line">    65: '新疆',</span><br><span class="line">    71: '台湾',</span><br><span class="line">    81: '香港',</span><br><span class="line">    82: '澳门',</span><br><span class="line">    91: '国外 '</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  if (</span><br><span class="line">    !code ||</span><br><span class="line">    !/^(^[1-9]\d&#123;7&#125;((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d&#123;3&#125;$)|(^[1-9]\d&#123;5&#125;[1-9]\d&#123;3&#125;((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d&#123;4&#125;)|\d&#123;3&#125;[Xx])$)$/.test(</span><br><span class="line">      code</span><br><span class="line">    )</span><br><span class="line">  ) &#123;</span><br><span class="line">    result.tip = '身份证号格式错误';</span><br><span class="line">    result.code = '01';</span><br><span class="line">    pass = false;</span><br><span class="line">  &#125; else if (!city[code.substr(0, 2)]) &#123;</span><br><span class="line">    result.tip = '身份证号地址编码错误';</span><br><span class="line">    result.code = '02';</span><br><span class="line">    pass = false;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    // 18位身份证需要验证最后一位校验位</span><br><span class="line">    if (code.length === 18) &#123;</span><br><span class="line">      code = code.split('');</span><br><span class="line">      // ∑(ai×Wi)(mod 11)</span><br><span class="line">      // 加权因子</span><br><span class="line">      const factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];</span><br><span class="line">      // 校验位</span><br><span class="line">      const parity = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];</span><br><span class="line">      let sum = 0;</span><br><span class="line">      let ai = 0;</span><br><span class="line">      let wi = 0;</span><br><span class="line">      for (let i = 0; i &lt; 17; i++) &#123;</span><br><span class="line">        ai = parseInt(code[i], 10);</span><br><span class="line">        wi = factor[i];</span><br><span class="line">        sum += ai * wi;</span><br><span class="line">      &#125;</span><br><span class="line">      let last = parity[sum % 11];</span><br><span class="line">      if (last !== code[17]) &#123;</span><br><span class="line">        result.tip = '身份证号校验位错误';</span><br><span class="line">        result.code = '03';</span><br><span class="line">        pass = false;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  // 判断性别</span><br><span class="line">  if (pass &amp;&amp; (sex === 0 || sex === 1)) &#123;</span><br><span class="line">    let vsex;</span><br><span class="line">    if (ycode.length === 15) vsex = ycode.substr(14, 1);</span><br><span class="line">    else if (ycode.length === 18) vsex = ycode.substr(16, 1);</span><br><span class="line">    if (vsex || vsex === 0) &#123;</span><br><span class="line">      if (parseInt(vsex) % 2 !== sex) &#123;</span><br><span class="line">        result.tip = '身份证号性别不符';</span><br><span class="line">        result.code = '04';</span><br><span class="line">        pass = false;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 身份证强校验</span><br><span class="line">  identityCodeVerifier(idCode, role = '') &#123;</span><br><span class="line">    idCode = idCode.replace(/\s+/g, '');</span><br><span class="line">    if (!idCode) &#123;</span><br><span class="line">      this.showToast(`请输入$&#123;role&#125;身份证!`);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;</span><br><span class="line">    const result = identityCodeValid(idCode);</span><br><span class="line">    if (result.code !== '11') &#123;</span><br><span class="line">      this.showToast(result.tip);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>正则表达式 如果玩的非常6 还是很方便的，自己用的还是不够熟练，很多东西就是 知道会用 但就是缺乏联系，而没有做到熟能生巧的地步。</p>
+<p>加油加油，虽然走的慢，至少在前进！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Summary/" rel="tag"># Summary</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/11/26/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%9B%9B-%E4%BA%8C%E7%BB%B4%E7%A0%81/" rel="prev" title="微信小程序开发记录之四-二维码">
+      <i class="fa fa-chevron-left"></i> 微信小程序开发记录之四-二维码
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/01/11/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95%E4%B9%8B%E4%BA%94/" rel="next" title="微信小程序开发记录之五">
+      微信小程序开发记录之五 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#🏀正则表达式"><span class="nav-number">1.</span> <span class="nav-text">🏀正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法"><span class="nav-number">1.1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#常用的标准字符说明"><span class="nav-number">1.1.1.</span> <span class="nav-text">常用的标准字符说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常用的特殊字符说明"><span class="nav-number">1.1.2.</span> <span class="nav-text">常用的特殊字符说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常用的限定字符说明"><span class="nav-number">1.1.3.</span> <span class="nav-text">常用的限定字符说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常用的定位字符说明"><span class="nav-number">1.1.4.</span> <span class="nav-text">常用的定位字符说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#举个栗子"><span class="nav-number">1.1.5.</span> <span class="nav-text">举个栗子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">2.</span> <span class="nav-text">最后</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Sweety Peng</p>
+  <div class="site-description" itemprop="description">keep learning, keep fresh!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sweety Peng</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
