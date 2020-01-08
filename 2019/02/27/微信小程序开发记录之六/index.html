@@ -46,18 +46,17 @@
   };
 </script>
 
-  <meta name="description" content="⚽️微信小程序wx.previewImage(Object object)wx.previewImage(Object object)：在新页面中全屏预览图片。预览的过程中用户可以进行保存图片、发送给朋友等操作。这是小程序开发文档中关于图片的一个API 这次开发中学习并运用了一下。 123456789methods &#x3D; &amp;#123;    previewImage(e) &amp;#123;      v">
+  <meta name="description" content="⚽️微信小程序wx.previewImage(Object object)wx.previewImage(Object object)：在新页面中全屏预览图片。预览的过程中用户可以进行保存图片、发送给朋友等操作。这是小程序开发文档中关于图片的一个API">
 <meta property="og:type" content="article">
-<meta property="og:title" content="微信小程序开发记录之五">
+<meta property="og:title" content="微信小程序开发记录之六">
 <meta property="og:url" content="http://sweetypeng.github.io/2019/02/27/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%85%AD/index.html">
 <meta property="og:site_name" content="SweetyPeng&#39;s Blog">
-<meta property="og:description" content="⚽️微信小程序wx.previewImage(Object object)wx.previewImage(Object object)：在新页面中全屏预览图片。预览的过程中用户可以进行保存图片、发送给朋友等操作。这是小程序开发文档中关于图片的一个API 这次开发中学习并运用了一下。 123456789methods &#x3D; &amp;#123;    previewImage(e) &amp;#123;      v">
+<meta property="og:description" content="⚽️微信小程序wx.previewImage(Object object)wx.previewImage(Object object)：在新页面中全屏预览图片。预览的过程中用户可以进行保存图片、发送给朋友等操作。这是小程序开发文档中关于图片的一个API">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-02-27T10:30:20.000Z">
-<meta property="article:modified_time" content="2020-01-08T14:42:34.841Z">
+<meta property="article:modified_time" content="2020-01-08T15:02:34.467Z">
 <meta property="article:author" content="Sweety Peng">
 <meta property="article:tag" content="微信小程序">
-<meta property="article:tag" content="Summary">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://sweetypeng.github.io/2019/02/27/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95%E4%B9%8B%E5%85%AD/">
@@ -72,7 +71,7 @@
   };
 </script>
 
-  <title>微信小程序开发记录之五 | SweetyPeng's Blog</title>
+  <title>微信小程序开发记录之六 | SweetyPeng's Blog</title>
   
 
 
@@ -199,7 +198,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          微信小程序开发记录之五
+          微信小程序开发记录之六
         </h1>
 
         <div class="post-meta">
@@ -216,7 +215,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-01-08 22:42:34" itemprop="dateModified" datetime="2020-01-08T22:42:34+08:00">2020-01-08</time>
+                <time title="Modified: 2020-01-08 23:02:34" itemprop="dateModified" datetime="2020-01-08T23:02:34+08:00">2020-01-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -241,7 +240,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="⚽️微信小程序"><a href="#⚽️微信小程序" class="headerlink" title="⚽️微信小程序"></a>⚽️微信小程序</h3><h3 id="wx-previewImage-Object-object"><a href="#wx-previewImage-Object-object" class="headerlink" title="wx.previewImage(Object object)"></a>wx.previewImage(Object object)</h3><p>wx.previewImage(Object object)：在新页面中全屏预览图片。预览的过程中用户可以进行保存图片、发送给朋友等操作。<br><br>这是小程序开发文档中关于图片的一个API</p>
+        <h3 id="⚽️微信小程序"><a href="#⚽️微信小程序" class="headerlink" title="⚽️微信小程序"></a>⚽️微信小程序</h3><h3 id="wx-previewImage-Object-object"><a href="#wx-previewImage-Object-object" class="headerlink" title="wx.previewImage(Object object)"></a>wx.previewImage(Object object)</h3><p>wx.previewImage(Object object)：在新页面中全屏预览图片。预览的过程中用户可以进行保存图片、发送给朋友等操作。<br>这是小程序开发文档中关于图片的一个API</p>
+<a id="more"></a>
 <p>这次开发中学习并运用了一下。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">methods = &#123;</span><br><span class="line">    previewImage(e) &#123;</span><br><span class="line">      var current = e.target.dataset.src;</span><br><span class="line">      wx.previewImage(&#123;</span><br><span class="line">        current: current, // 当前显示图片的http链接</span><br><span class="line">        urls: this.pdfImgs // 需要预览的图片http链接列表</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;view wx:for="&#123;&#123;pdfImgs&#125;&#125;" wx:for-item="item" wx:key="&#123;&#123;index&#125;&#125;" class="&#123;&#123;pdfImgs.length&gt;1 ? 'pdf-img-2' : 'pdf-img-1'&#125;&#125; &#123;&#123;pdfImgs.length&gt;2 ? 'pdf-img' : 'pdf-img-1'&#125;&#125;"&gt;</span><br><span class="line">    &lt;image src="&#123;&#123;item&#125;&#125;" data-src="&#123;&#123;item&#125;&#125;" @tap="previewImage"/&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
@@ -264,7 +264,6 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag"># 微信小程序</a>
-              <a href="/tags/Summary/" rel="tag"># Summary</a>
           </div>
 
         
@@ -355,13 +354,13 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
