@@ -51,7 +51,9 @@ master分支的文件,是通过Hexo进行管理，设置branch为master，deploy
 - next主题
 
 使用的主题如果是从GitHub克隆的，那么主题文件夹下有Git管理文件，需要将它们移除。不然保存不了，这一点深深吃亏，每次都重新配置主题，作死！
-
+```
+$ rm -R themes/next/.git*
+```
 ## 更换电脑后的使用
 1. git clone 拷贝仓库，默认是hexo分支
 2. 在刚拷贝下的本地文件夹中，通过git bash 命令，依次进行`npm install hexo`、`npm install`、`npm install hexo-deployer-git`
