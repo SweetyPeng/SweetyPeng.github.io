@@ -54,7 +54,7 @@
 <meta property="og:description" content="前言之前经过一番折腾，终于利用hexo和github pages 完成了自己的博客。一切本来都是如此美好，然后意外发生了。前不久自己的电脑坏了，于是申请了公司的电脑。当准备写博客的时候，一下子愣住了。该怎么继续呢···">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-09-08T05:24:20.000Z">
-<meta property="article:modified_time" content="2020-01-06T14:46:01.035Z">
+<meta property="article:modified_time" content="2020-01-09T01:28:10.381Z">
 <meta property="article:author" content="Sweety Peng">
 <meta property="article:tag" content="hexo">
 <meta property="article:tag" content="github">
@@ -217,7 +217,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-01-06 22:46:01" itemprop="dateModified" datetime="2020-01-06T22:46:01+08:00">2020-01-06</time>
+                <time title="Modified: 2020-01-09 09:28:10" itemprop="dateModified" datetime="2020-01-09T09:28:10+08:00">2020-01-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,6 +262,7 @@
 <li>next主题</li>
 </ul>
 <p>使用的主题如果是从GitHub克隆的，那么主题文件夹下有Git管理文件，需要将它们移除。不然保存不了，这一点深深吃亏，每次都重新配置主题，作死！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rm -R themes&#x2F;next&#x2F;.git*</span><br></pre></td></tr></table></figure>
 <h2 id="更换电脑后的使用"><a href="#更换电脑后的使用" class="headerlink" title="更换电脑后的使用"></a>更换电脑后的使用</h2><ol>
 <li>git clone 拷贝仓库，默认是hexo分支</li>
 <li>在刚拷贝下的本地文件夹中，通过git bash 命令，依次进行<code>npm install hexo</code>、<code>npm install</code>、<code>npm install hexo-deployer-git</code><br>（注意，不需要hexo init这条指令，hexo init 会初始化 Hexo 环境, 该操作会清空.git 文件夹, 导致版本控制信息会丢失，一切就白费了）</li>
